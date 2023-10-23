@@ -4,7 +4,7 @@
   box-sizing: border-box;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-/* //ower root womponent(app.js) take all the page */
+
 #root {
   height: 100vh;
 }
@@ -16,7 +16,6 @@
     "main"
     "footer";
   height: 100%;
-  /* set the aria of evrey area */
   grid-template-rows: 50px 1fr 50px;
 }
 
@@ -27,11 +26,13 @@ main {
 .wrapper {
   padding: 30px;
   display: flex;
-  justify-content: "space-between";
+  justify-content: space-between;
 }
+
 .wrapper .products-wrapper {
   width: 68%;
 }
-.wrapper .filer-wrapper {
+
+.wrapper .filter-wrapper {
   width: 30%;
 }
