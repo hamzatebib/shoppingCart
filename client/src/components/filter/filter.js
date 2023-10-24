@@ -2,11 +2,19 @@ import React from "react";
 import "../../css/filter/filter.css";
 
 function Filter(props) {
-  const { sise, sort, handleFilterBySise, handleFilterByOrder } = props;
+  const {
+    sise,
+    sort,
+    handleFilterBySise,
+    handleFilterByOrder,
+    productsNumber,
+  } = props;
   return (
     <div className="filter-wrapper">
       <h2 className="filter-title">filter title</h2>
-      <div className="filter-number-of-product">numberof product: 4</div>
+      <div className="filter-number-of-product">
+        numberof product: {productsNumber}
+      </div>
       <div className="filter-by-size">
         <span>filter</span>
         <select

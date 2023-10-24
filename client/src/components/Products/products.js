@@ -3,6 +3,7 @@ import "../../css/Products/products.css";
 import ProductModal from "./productModal";
 function Products(props) {
   const [product, setProduct] = useState("");
+  const { products, addToCart } = props;
   const openModel = (product) => {
     setProduct(product);
   };
@@ -11,7 +12,7 @@ function Products(props) {
   };
   return (
     <div className="products-wrapper">
-      {props.products.map((product) => (
+      {products.map((product) => (
         <div className="product-item" key={product.id}>
           <a href="#" onClick={() => openModel(product)}>
             <img src={product.imageUrl} alt={product.title} />
@@ -20,7 +21,7 @@ function Products(props) {
             <p>{product.title}</p>
             <span>${product.price}</span>
           </div>
-          <button> add item </button>
+          <button onClick={() => addToCart(product)}> add item </button>
         </div>
       ))}
       <ProductModal product={product} closeModal={closeModal} />
