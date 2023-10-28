@@ -21,3 +21,24 @@
   width: 100%;
   border-radius: 5px;
 }
+.filter-wrapper .filter-by-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.filter-wrapper .filter-by-name input {
+  width: 70%;
+  height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 0 10px;
+}
+.filter-wrapper .filter-by-name button {
+  width: 25%;
+  height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 0 10px;
+  background-color: #2a5ea5;
+  color: #fff;
+}

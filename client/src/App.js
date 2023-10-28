@@ -11,14 +11,16 @@ function App() {
   const [products, setProducts] = useState(data);
   const [sise, setSise] = useState("");
   const [sort, setSort] = useState("");
-  const [cartitems, setCartitems] = useState(
+
+  const [cartItems, setCartitems] = useState(
     //use the cartItemsstotred in localstorage
     JSON.parse(localStorage.getItem("cartItems")) || []
   );
+  const [searchTerm, setSearchTerm] = useState("");
   useEffect(() => {
     //store cartItems in localstorage we dont lose it when refrech
-    localStorage.setItem("cartItems", JSON.stringify(cartitems));
-  }, [cartitems]);
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const handleFilterBySise = (e) => {
     setSise(e.target.value);
@@ -50,11 +52,26 @@ function App() {
     });
     setProducts(newProducts);
   };
+  const handleInputNameChange = (e) => {
+    setSearchTerm(e.target.value);
+    console.log("name =" + searchTerm);
+  };
+
+  const searchByName = (searchTerm) => {
+    let name = searchTerm;
+    let productClone = [...products];
+    let newProducts = productClone.filter((p) =>
+      p.title.toLowerCase().includes(name.toLowerCase())
+    );
+    setProducts(newProducts);
+
+    console.log("my ptoducts=" + JSON.stringify(products) + "name=" + name);
+  };
 
   const addToCart = (product) => {
-    const cartItemsClone = [...cartitems];
+    const cartItemsClone = [...cartItems];
     var isProductExist = false;
-    console.log("lenth" + cartitems.length);
+    console.log("lenth" + cartItems.length);
     cartItemsClone.forEach((p) => {
       if (p.id == product.id) {
         p.qty++;
@@ -67,7 +84,7 @@ function App() {
     setCartitems(cartItemsClone);
   };
   const removeFromCart = (product) => {
-    const cartItemsClone = [...cartitems];
+    const cartItemsClone = [...cartItems];
     setCartitems(cartItemsClone.filter((p) => p.id != product.id));
   };
   return (
@@ -82,9 +99,12 @@ function App() {
             sise={sise}
             handleFilterByOrder={handleFilterByOrder}
             sort={sort}
+            searchByName={searchByName}
+            handleInputNameChange={handleInputNameChange}
+            searchTerm={searchTerm}
           />
         </div>
-        <Cart cartitems={cartitems} removeFromCart={removeFromCart} />
+        <Cart cartItems={cartItems} removeFromCart={removeFromCart} />
       </main>
       <Footer />
     </div>

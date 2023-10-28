@@ -8,10 +8,27 @@ function Filter(props) {
     handleFilterBySise,
     handleFilterByOrder,
     productsNumber,
+    searchByName,
+    handleInputNameChange,
+    searchTerm,
   } = props;
   return (
     <div className="filter-wrapper">
       <h2 className="filter-title">filter title</h2>
+      <div className="filter-by-name">
+        <input
+          type="text"
+          className="filter-input"
+          placeholder="search by name"
+          onChange={handleInputNameChange}
+        />
+        <button
+          className="filter-button"
+          onClick={() => searchByName(searchTerm)}
+        >
+          search
+        </button>
+      </div>
       <div className="filter-number-of-product">
         numberof product: {productsNumber}
       </div>
@@ -40,6 +57,7 @@ function Filter(props) {
           <option value="highest">Highest</option>
         </select>
       </div>
+      {/* <!-- add button call serch by name --> */}
     </div>
   );
 }

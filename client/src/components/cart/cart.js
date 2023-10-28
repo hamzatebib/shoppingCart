@@ -2,22 +2,22 @@ import React, { useEffect } from "react";
 import "../../css/cart/cart.css";
 
 function Cart(props) {
-  const { cartitems, removeFromCart } = props;
+  const { cartItems, removeFromCart } = props;
   useEffect(() => {
-    console.log("length" + cartitems.length);
-  }, [cartitems]);
+    console.log("length" + cartItems.length);
+  }, [cartItems]);
   return (
     <div className="cart-wrapper">
       <div className="cart-title">
         {" "}
-        {cartitems.length === 0 ? (
+        {cartItems.length === 0 ? (
           "Empty Card"
         ) : (
-          <p>there is {cartitems.length} products in card</p>
+          <p>there is {cartItems.length} products in card</p>
         )}
       </div>
       <div className="cart-items">
-        {cartitems.map((item) => (
+        {cartItems.map((item) => (
           <div key={item.id} className="cart-item">
             <img src={item.imageUrl} alt="" />
             <div className="cart-info">
@@ -33,6 +33,17 @@ function Cart(props) {
           </div>
         ))}
       </div>
+      {cartItems.length && (
+        <div className="cart-footer">
+          <div className="total">
+            total:${" "}
+            {cartItems.reduce((acc, p) => {
+              return acc + p.price;
+            }, 0)}
+          </div>
+          <button>select product</button>
+        </div>
+      )}
     </div>
   );
 }
