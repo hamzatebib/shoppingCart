@@ -1,11 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../../css/cart/cart.css";
+import Checkout from "../checkoutForm/checkout";
 
 function Cart(props) {
+  const [showForm, setShowForm] = useState(false);
+  const [value, setValue] = useState("");
   const { cartItems, removeFromCart } = props;
   useEffect(() => {
     console.log("length" + cartItems.length);
   }, [cartItems]);
+  const submitOrder = (e) => {
+    e.preventDefault(); // Prevents the form from submitting in the default way
+    const order = {
+      name: value.name,
+      value: value.email,
+    };
+
+    console.log("submitOrder=" + JSON.stringify(order));
+  };
+  const handleChange = (e) => {
+    //prevstate +newvlue edit
+    setValue((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
   return (
     <div className="cart-wrapper">
       <div className="cart-title">
@@ -41,9 +60,15 @@ function Cart(props) {
               return acc + p.price;
             }, 0)}
           </div>
-          <button>select product</button>
+          <button onClick={() => setShowForm(true)}>select product</button>
         </div>
       )}
+      <Checkout
+        showForm={showForm}
+        submitOrder={submitOrder}
+        handleChange={handleChange}
+        setShowForm={setShowForm}
+      />
     </div>
   );
 }
