@@ -18,6 +18,7 @@ function Cart(props) {
 
     console.log("submitOrder=" + JSON.stringify(order));
     console.log("abccc");
+    console.log("abcccd");
   };
   const handleChange = (e) => {
     //prevstate +newvlue edit
