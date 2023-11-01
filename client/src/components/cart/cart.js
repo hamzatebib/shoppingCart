@@ -16,7 +16,8 @@ function Cart(props) {
       value: value.email,
     };
 
-    console.log("submitOrder=" + JSON.stringify(order));
+    //console.log("submitOrder=" + JSON.stringify(order));
+    console.log(ccccc);
   };
   const handleChange = (e) => {
     //prevstate +newvlue edit
