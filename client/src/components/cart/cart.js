@@ -17,7 +17,8 @@ function Cart(props) {
     };
 
     //console.log("submitOrder=" + JSON.stringify(order));
-    console.log(ccccc);
+    console.log("ccccc");
+    console.log("dddddd");
   };
   const handleChange = (e) => {
     //prevstate +newvlue edit
