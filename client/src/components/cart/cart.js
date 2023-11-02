@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../css/cart/cart.css";
 import Checkout from "../checkoutForm/checkout";
+import Bounce from "react-reveal/Bounce";
 
 function Cart(props) {
   const [showForm, setShowForm] = useState(false);
@@ -35,40 +36,44 @@ function Cart(props) {
           <p>there is {cartItems.length} products in card</p>
         )}
       </div>
-      <div className="cart-items">
-        {cartItems.map((item) => (
-          <div key={item.id} className="cart-item">
-            <img src={item.imageUrl} alt="" />
-            <div className="cart-info">
-              <div>
-                <p>title:{item.title}</p>
-                <p>qty: {item.qty}</p>
-                <p>price:{item.price}</p>
+      <Bounce left cascade>
+        <>
+          <div className="cart-items">
+            {cartItems.map((item) => (
+              <div key={item.id} className="cart-item">
+                <img src={item.imageUrl} alt="" />
+                <div className="cart-info">
+                  <div>
+                    <p>title:{item.title}</p>
+                    <p>qty: {item.qty}</p>
+                    <p>price:{item.price}</p>
+                  </div>
+                  <button onClick={() => removeFromCart(item)}>
+                    Remove from Cart
+                  </button>
+                </div>
               </div>
-              <button onClick={() => removeFromCart(item)}>
-                Remove from Cart
-              </button>
+            ))}
+          </div>
+          {cartItems.length && (
+            <div className="cart-footer">
+              <div className="total">
+                total:${" "}
+                {cartItems.reduce((acc, p) => {
+                  return acc + p.price;
+                }, 0)}
+              </div>
+              <button onClick={() => setShowForm(true)}>select product</button>
             </div>
-          </div>
-        ))}
-      </div>
-      {cartItems.length && (
-        <div className="cart-footer">
-          <div className="total">
-            total:${" "}
-            {cartItems.reduce((acc, p) => {
-              return acc + p.price;
-            }, 0)}
-          </div>
-          <button onClick={() => setShowForm(true)}>select product</button>
-        </div>
-      )}
-      <Checkout
-        showForm={showForm}
-        submitOrder={submitOrder}
-        handleChange={handleChange}
-        setShowForm={setShowForm}
-      />
+          )}
+          <Checkout
+            showForm={showForm}
+            submitOrder={submitOrder}
+            handleChange={handleChange}
+            setShowForm={setShowForm}
+          />
+        </>
+      </Bounce>
     </div>
   );
 }
