@@ -15,3 +15,7 @@ const store = createStore(
   enhancer(applyMiddleware(reduxThunk))
 );
 export default store;
+// create satatic file
+// create action creator dispatch(action)
+//create reducer
+//handle view
