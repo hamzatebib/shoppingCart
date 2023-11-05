@@ -6,6 +6,8 @@ import Products from "./components/Products/products";
 import Filter from "./components/filter/filter";
 import Cart from "./components/cart/cart";
 import { useEffect } from "react";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 function App() {
   const [products, setProducts] = useState(data);
@@ -88,26 +90,28 @@ function App() {
     setCartitems(cartItemsClone.filter((p) => p.id != product.id));
   };
   return (
-    <div className="layout">
-      <Header />
-      <main>
-        <div className="wrapper">
-          <Products products={products} addToCart={addToCart} />
-          <Filter
-            productsNumber={products.length}
-            handleFilterBySise={handleFilterBySise}
-            sise={sise}
-            handleFilterByOrder={handleFilterByOrder}
-            sort={sort}
-            searchByName={searchByName}
-            handleInputNameChange={handleInputNameChange}
-            searchTerm={searchTerm}
-          />
-        </div>
-        <Cart cartItems={cartItems} removeFromCart={removeFromCart} />
-      </main>
-      <Footer />
-    </div>
+    <Provider store={store}>
+      <div className="layout">
+        <Header />
+        <main>
+          <div className="wrapper">
+            <Products products={products} addToCart={addToCart} />
+            <Filter
+              productsNumber={products.length}
+              handleFilterBySise={handleFilterBySise}
+              sise={sise}
+              handleFilterByOrder={handleFilterByOrder}
+              sort={sort}
+              searchByName={searchByName}
+              handleInputNameChange={handleInputNameChange}
+              searchTerm={searchTerm}
+            />
+          </div>
+          <Cart cartItems={cartItems} removeFromCart={removeFromCart} />
+        </main>
+        <Footer />
+      </div>
+    </Provider>
   );
 }
 
